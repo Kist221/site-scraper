@@ -1,0 +1,195 @@
+<div class="wrapper">
+    <div class="sidebar" data-background-color="black" data-active-color="danger">
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/dashboard" class="simple-text company-logo-text">
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="/dashboard">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/fetch">
+                        <i class="ti-email"></i>
+                        <p>Fetch Reviews</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/templates">
+                        <i class="ti-layout"></i>
+                        <p>Manage Templates</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/contacts">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Contact List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/import">
+                        <i class="ti-write"></i>
+                        <p>Import Contacts</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand">Dashboard</p>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/fetch">
+                                <i class="ti-star"></i>
+								<p>Fetch Reviews</p>
+                            </a>
+                        </li>
+						<li>
+                            <a href="/settings">
+								<i class="ti-settings"></i>
+								<p>Profile</p>
+                            </a>
+                        </li>
+                        <li>
+                     <a href="/logout">
+                        <i class="ti-power-off"></i>
+                        <p>Logout</p>
+                     </a>
+                  </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Contacts Behavior</h4>
+                                <p class="category">24 Hours performance</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartHours" class="ct-chart"></div>
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Open
+                                        <i class="fa fa-circle text-danger"></i> Click
+                                        <i class="fa fa-circle text-warning"></i> Click Second Time
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Updated 3 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Email Statistics</h4>
+                                <p class="category">Last Campaign Performance</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Open
+                                        <i class="fa fa-circle text-danger"></i> Bounce
+                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="ti-timer"></i> Campaign sent 2 days ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">2018 Redirects</h4>
+                                <p class="category">All reviews including positive and negative</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartActivity" class="ct-chart"></div>
+
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Positive
+                                        <i class="fa fa-circle text-warning"></i> Negative
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="ti-check"></i> Data information certified
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                        <li>
+                            <a href="/">
+                                Review Fetch
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    Copyright &copy; <script>document.write(new Date().getFullYear())</script> Review Fetch</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+<!-- DEMO methods with fixed values -->
+    <script src="assets/js/demo.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            demo.initChartist();
+        });
+    </script>

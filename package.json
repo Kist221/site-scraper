@@ -1,0 +1,28 @@
+{
+  "name": "site-scraper",
+  "version": "2.2.1",
+  "description": "Site Scraping Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kist221/site-scraper.git"
+  },
+  "author": "Kist221",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kist221/site-scraper/issues"
+  },
+  "homepage": "https://github.com/Kist221/site-scraper#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.0.10",
+    "request": "^2.85.0"
+  }
+}
