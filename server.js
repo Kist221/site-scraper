@@ -1,36 +1,40 @@
-// requirements
 var express = require("express");
 var bodyParser = require("body-parser");
-var exphbs = require("express-handlebars");
-var routes = require("./controllers/app_controllers.js");
-// server PORT
-var PORT = process.env.PORT || 3000;
-// Requiring our models for syncing
+var logger = require("morgan");
+var mongoose = require("mongoose");
+
+// Our scraping tools
+// Axios is a promised-based http library, similar to jQuery's Ajax method
+// It works on the client and on the server
+var axios = require("axios");
+var cheerio = require("cheerio");
+
+// Require all models
 var db = require("./models");
-// start express
+
+var PORT = 3000;
+
+// Initialize Express
 var app = express();
 
-// configure handlebars template
-app.engine("handlebars", exphbs({
- helpers: require('./views/helpers/handlebars.js'),
- defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-// URL parser
-app.use(bodyParser.urlencoded({ extended: false }));
-// json parser
-app.use(bodyParser.json());
-// serve static content from the "public" directory
-app.use(express.static("public"));
-// Give the server access to routes
-app.use(routes);
+// Configure middleware
 
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
-// Add {force: true} inside of sync to resolve DB/model changes
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+// Use morgan logger for logging requests
+app.use(logger("dev"));
+// Use body-parser for handling form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
+
+// By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/week18Populater", {
+  useMongoClient: true
 });
 
-module.exports = app;  // for testing
+
+// Start the server
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
+});

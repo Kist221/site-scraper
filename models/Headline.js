@@ -1,63 +1,32 @@
-module.exports = function(sequelize, DataTypes) {
-  var Company = sequelize.define("Company", {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-    twitter: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    instagram: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    facebook: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    about: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    yelp: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
-    },
-    google: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
-    },
-    bbb: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
-    }
-  });
+var mongoose = require("mongoose");
 
-  Company.associate = function(models) {
-    // We're saying that a Company should belong to a User
-    // A Company can't be created without a User due to the foreign key constraint
-    Company.belongsTo(models.Users, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
+// Save a reference to the Schema constructor
+var Schema = mongoose.Schema;
 
-    // Associating Contacts with Companies
-    Company.hasMany(models.Contact);
-  };
+// Using the Schema constructor, create a new UserSchema object
+// This is similar to a Sequelize model
+var HeadlineSchema = new Schema({
+  // `title` is required and of type String
+  title: {
+    type: String,
+    required: true
+  },
+  // `link` is required and of type String
+  link: {
+    type: String,
+    required: true
+  },
+  // `note` is an object that stores a Note id
+  // The ref property links the ObjectId to the Note model
+  // This allows us to populate the Headline with an associated Note
+  note: {
+    type: Schema.Types.ObjectId,
+    ref: "Note"
+  }
+});
 
-  return Company;
-};
+// This creates our model from the above schema, using mongoose's model method
+var Headline = mongoose.model("Headline", HeadlineSchema);
+
+// Export the Headline model
+module.exports = Headline;

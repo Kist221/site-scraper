@@ -1,71 +1,19 @@
-module.exports = function(sequelize, DataTypes) {
-  var Contact = sequelize.define("Contact", {
-    // Giving the Contact model a name of type STRING
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-    // Giving the Contact model a name of type BOOLEAN
-    gender: {
-      type: DataTypes.BOOLEAN
-    },
-    // Giving the Contact model an email of type STRING
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true
-      }
-    },
-    // Giving the Contact model a phone of type STRING
-    phone: {
-      type: DataTypes.STRING,
-      validate: {
-        len:[10,20]
-      }
-    },
+var mongoose = require("mongoose");
 
-    // status - 0: a review request was not sent
-    // status - 1: a review request was sent
-    // status - 2: the contact submitted a review
-    // status - 3: the contact opened but did not leave a review
-    status: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0
-    },
+// Save a reference to the Schema constructor
+var Schema = mongoose.Schema;
 
-    // is the contact still active
-    active: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
+// Using the Schema constructor, create a new NoteSchema object
+// This is similar to a Sequelize model
+var NoteSchema = new Schema({
+  // `title` is of type String
+  title: String,
+  // `body` is of type String
+  body: String
+});
 
-     // the contacts review
-    review: {
-      type: DataTypes.TEXT,
-    },
+// This creates our model from the above schema, using mongoose's model method
+var Note = mongoose.model("Note", NoteSchema);
 
-    // review type 0: negative review, 1: positive review
-    reviewType: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-
-  });
-
-  Contact.associate = function(models) {
-    // We're saying that a Contact should belong to a Company
-    // A Contact can't be created without a Company due to the foreign key constraint
-    Contact.belongsTo(models.Company, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
-
-  return Contact;
-};
-
+// Export the Note model
+module.exports = Note;
