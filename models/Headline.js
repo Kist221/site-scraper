@@ -1,16 +1,20 @@
 // mongoose for mongoDB
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-var HeadlineSchema = new Schema({
+const HeadlineSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
     required: true
+  },
+  // summary is string and not required
+  summary: {
+    type: String
   },
   // `link` is required and of type String
   link: {
@@ -27,7 +31,7 @@ var HeadlineSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Headline = mongoose.model("Headline", HeadlineSchema);
+const Headline = mongoose.model("Headline", HeadlineSchema);
 
 // Export the Headline model
 module.exports = Headline;

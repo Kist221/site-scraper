@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers/fetch.js");
+// mongoose for mongoDB
+const mongoose = require("mongoose");
 // server PORT
 const PORT = process.env.PORT || 3000;
 // start express
@@ -21,6 +23,14 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 // Give the server access to routes
 app.use(routes);
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // =============================================================
 // Start the server

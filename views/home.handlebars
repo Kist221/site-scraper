@@ -1,6 +1,9 @@
 <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
+	<h1>Articles</h1>
+	<div id="headlines">
+		{{#each headline}}
+		<h2><a href="{{link}}">{{title}}</a></h2>
+		<div>{{summary}}</div>
+		{{/each}}
+	</div>
 </div>
