@@ -54,34 +54,6 @@ mongoose.connect(MONGODB_URI, {
 
 15. Your site doesn't need to match the demo's style, but feel free to attempt something similar if you'd like. Otherwise, just be creative!
 
-## File Structure
-<!-- 
-```
-├── controllers
-|  ├── fetch.js
-|  ├── headline.js
-|  └── note.js
-├── models
-|  ├── Headline.js
-|  ├── index.js
-|  └── Note.js
-├── public
-|  └── assets
-├── routes
-|  ├── api
-|  ├── index.js
-|  └── view
-├── scripts
-|  └── scrape.js
-└── views
-|   ├── home.handlebars
-|   ├── layouts
-|   └── saved.handlebars
-├── package-lock.json
-├── package.json
-└── server.js
-```
- -->
 ## Instructions
 
 * Create an app that accomplishes the following:

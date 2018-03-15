@@ -1,40 +1,31 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+// requirements
+const express = require("express");
+const bodyParser = require("body-parser");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers/fetch.js");
+// server PORT
+const PORT = process.env.PORT || 3000;
+// start express
+const app = express();
 
-// Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
-
-// Require all models
-var db = require("./models");
-
-var PORT = 3000;
-
-// Initialize Express
-var app = express();
-
-// Configure middleware
-
-// Use morgan logger for logging requests
-app.use(logger("dev"));
-// Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
-// Use express.static to serve the public folder as a static directory
+// configure handlebars template
+app.engine("handlebars", exphbs({
+ // helpers: require('./views/helpers/handlebars.js'),
+ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+// URL parser
+app.use(bodyParser.urlencoded({ extended: false }));
+// json parser
+app.use(bodyParser.json());
+// serve static content from the "public" directory
 app.use(express.static("public"));
+// Give the server access to routes
+app.use(routes);
 
-// By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
-// Connect to the Mongo DB
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/week18Populater", {
-  useMongoClient: true
-});
-
-
+// =============================================================
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });
+
+module.exports = app;  // for testing
