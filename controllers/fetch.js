@@ -17,6 +17,17 @@ router.get("/", function(req, res) {
 		});
 });
 
+// notes route
+router.get("/notes/:id", function(req, res) {
+  db.Headline.findOne({ _id: req.params.id })
+    .then(function(headline) {
+      console.log(headline);
+      res.render("notes", {headline: headline});
+    });
+});
+
+
+
 // API ROUTES
 // ==================================================
 // A GET route for scraping
@@ -30,7 +41,6 @@ router.get("/api/scrape", function(req, res) {
     $(".CS-ArticleContent").each(function(i, element) {
       // Save an empty result object
       const result = {};
-
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
         .children("h3")
@@ -46,7 +56,7 @@ router.get("/api/scrape", function(req, res) {
       db.Headline.create(result)
         .then(function(dbHeadline) {
           // View the added result in the console
-          // console.log(dbHeadline);
+          res.json(dbHeadline);
         })
         .catch(function(err) {
           // If an error occurred, send it to the client
@@ -55,7 +65,9 @@ router.get("/api/scrape", function(req, res) {
     });
 
     // If we were able to successfully scrape and save an Headline, send a message to the client
-    res.send("Scrape Complete");
+    console.log("Scrape Complete");
+    res.json("Scrape Complete");
+    res.end();
   });
 });
 
@@ -63,6 +75,7 @@ router.get("/api/scrape", function(req, res) {
 router.get("/api/headlines", function(req, res) {
 	// Grab every document in the Headlines collection
 	db.Headline.find({})
+    .populate("note")
 		.then(function(dbHeadline) {
 			// If we were able to successfully find Headlines, send them back to the client
 			res.json(dbHeadline);
@@ -75,7 +88,7 @@ router.get("/api/headlines", function(req, res) {
 
 // ============================================
 // cleanup
-router.get("/cleanup", function(req, res) {
+router.get("/api/cleanup", function(req, res) {
 	// clear db
 	db.Headline.remove({})
 		.then(function(data) {
