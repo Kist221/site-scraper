@@ -2,8 +2,8 @@
 
 ### Overview
 
-In this assignment, you'll create a web app that lets users view and leave comments on the latest news. But you're not going to actually write any articles; instead, you'll flex your Mongoose and Cheerio muscles to scrape news from another site.
-
+<!-- In this assignment, you'll create a web app that lets users view and leave comments on the latest news. But you're not going to actually write any articles; instead, you'll flex your Mongoose and Cheerio muscles to scrape news from another site.
+ -->
 ### Before You Begin
 <!-- 
 1. Create a GitHub repo for this assignment and clone it to your computer. Any name will do, just make sure it's related to this project in some fashion.
@@ -24,7 +24,7 @@ In this assignment, you'll create a web app that lets users view and leave comme
 
 9. **NOTE**: If you want to earn complete credit for your work, you must use all six of these packages in your assignment. -->
 
-10. In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
+<!-- 10. In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
 
 11. Create a Heroku app in your project directory.
 
@@ -32,9 +32,9 @@ In this assignment, you'll create a web app that lets users view and leave comme
 
     * `heroku addons:create mongolab`
 
-    * This command will add the free mLab provision to your project.
+    * This command will add the free mLab provision to your project. -->
 
-13. When you go to connect your mongo database to mongoose, do so the following way:
+<!-- 13. When you go to connect your mongo database to mongoose, do so the following way:
 
 ```js
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
@@ -47,13 +47,13 @@ mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 ```
-
-* This code should connect mongoose to your remote mongolab database if deployed, but otherwise will connect to the local mongoHeadlines database on your computer.
-
-14. [Watch this demo of a possible submission](mongo-homework-demo.mov). See the deployed demo application [here](http://nyt-mongo-scraper.herokuapp.com/).
-
-15. Your site doesn't need to match the demo's style, but feel free to attempt something similar if you'd like. Otherwise, just be creative!
-
+ -->
+<!-- * This code should connect mongoose to your remote mongolab database if deployed, but otherwise will connect to the local mongoHeadlines database on your computer.
+ -->
+<!-- 14. [Watch this demo of a possible submission](mongo-homework-demo.mov). See the deployed demo application [here](http://nyt-mongo-scraper.herokuapp.com/).
+ -->
+<!-- 15. Your site doesn't need to match the demo's style, but feel free to attempt something similar if you'd like. Otherwise, just be creative!
+ -->
 ## Instructions
 
 * Create an app that accomplishes the following:

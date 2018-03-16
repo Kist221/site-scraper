@@ -17,8 +17,10 @@ router.get("/", function(req, res) {
 		});
 });
 
-// A GET route for scraping the echojs website
-router.get("/scrape", function(req, res) {
+// API ROUTES
+// ==================================================
+// A GET route for scraping
+router.get("/api/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("https://www.csdesignstudios.com/studio-news", function(err, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -58,7 +60,7 @@ router.get("/scrape", function(req, res) {
 });
 
 // Route for getting all Headlines from the db
-router.get("/headlines", function(req, res) {
+router.get("/api/headlines", function(req, res) {
 	// Grab every document in the Headlines collection
 	db.Headline.find({})
 		.then(function(dbHeadline) {
@@ -71,6 +73,7 @@ router.get("/headlines", function(req, res) {
 		});
 });
 
+// ============================================
 // cleanup
 router.get("/cleanup", function(req, res) {
 	// clear db
