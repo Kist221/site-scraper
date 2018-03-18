@@ -1,0 +1,26 @@
+<div id="wrapper">
+	<a href="/">Back</a>
+	<div id="content">
+		<div class="headline" id="{{headline._id}}">		
+			<h1>{{headline.title}}</h1>
+			<p>{{headline.summary}}</p>
+			<a href="{{headline.link}}" target="_blank" rel="noopener">View Article</a>
+		</div>
+		<div id="comments">
+			<h2>Comments</h2>
+			<div id="commentForm">
+				<input id="userInput" name="Title" placeholder="Title">
+				<textarea id="bodyinput" name="Comment" placeholder="Comment"></textarea>
+				<button data-id="{{headline._id}}" id='addComment'>Add Comment</button>
+			</div>
+			<div id="commentsContainer">
+				{{#each headline.comment}}
+					<div class="headline" articleId="{{_id}}">
+						<h2>{{headline.comment.title}}</h2>
+						<p>{{headline.comment.body}}</p>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</div>

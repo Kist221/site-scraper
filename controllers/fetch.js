@@ -17,20 +17,20 @@ router.get("/", function(req, res) {
 		});
 });
 
-// notes route
-router.get("/notes/:id", function(req, res) {
+// comment route
+router.get("/article/:id", function(req, res) {
   db.Headline.findOne({ _id: req.params.id })
+    .populate("comment")
     .then(function(headline) {
       console.log(headline);
-      res.render("notes", {headline: headline});
+      res.render("comment", {headline: headline});
     });
 });
 
 
-
 // API ROUTES
 // ==================================================
-// A GET route for scraping
+// route for scraping
 router.get("/api/scrape", function(req, res) {
   // First, we grab the body of the html with request
   request("https://www.csdesignstudios.com/studio-news", function(err, response, html) {
@@ -63,7 +63,6 @@ router.get("/api/scrape", function(req, res) {
           return res.json(err);
         });
     });
-
     // If we were able to successfully scrape and save an Headline, send a message to the client
     console.log("Scrape Complete");
     res.json("Scrape Complete");
@@ -72,10 +71,10 @@ router.get("/api/scrape", function(req, res) {
 });
 
 // Route for getting all Headlines from the db
-router.get("/api/headlines", function(req, res) {
+router.get("/api/articles", function(req, res) {
 	// Grab every document in the Headlines collection
 	db.Headline.find({})
-    .populate("note")
+    .populate("comment")
 		.then(function(dbHeadline) {
 			// If we were able to successfully find Headlines, send them back to the client
 			res.json(dbHeadline);
@@ -85,6 +84,25 @@ router.get("/api/headlines", function(req, res) {
 			res.json(err);
 		});
 });
+
+// Route for saving/updating an Headline's associated Comment
+router.post("/api/articles/:id", function(req, res) {
+  // Create a new comment and pass the req.body to the entry
+  db.Comment.create(req.body)
+    .then(function(dbComment) {
+      // If a Comment was created successfully, find one Headline with an `_id` equal to `req.params.id`. Update the Headline to be associated with the new Comment
+      // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+      // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+      return db.Headline.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
+    })
+    .then(function(dbHeadline) {
+      res.json(dbHeadline);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
 
 // ============================================
 // cleanup

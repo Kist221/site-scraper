@@ -9,7 +9,7 @@ $("#wrapper").on("click", "#clearBtn", function() {
   })
 });
 
-// When you click the savenote button
+// When you click the scrape button
 $("#wrapper").on("click", "#scrapeBtn", function() {
   $.ajax({
     method: "GET",
@@ -20,7 +20,26 @@ $("#wrapper").on("click", "#scrapeBtn", function() {
   })
 });
 
-// goto single headline page with notes
+// goto single headline page with comments
 $("#headlines").on("click", ".headline", function() {
-  window.location = "/notes/" + $(this).attr("articleId");
+  window.location = "/article/" + $(this).attr("articleId");
+});
+
+// add comments to the headlines
+$("#wrapper").on("click", "#addComment", function() {
+  // grab headline ID
+  const thisID = $(this).attr("data-id");
+  // post comment data for creation
+  $.ajax({
+      method: "POST",
+      url: "/api/articles/" + thisID,
+      data: {
+        title: $("#titleInput").val(),
+        body: $("#bodyInput").val()
+      }
+    })
+    .then(function(data) {
+      console.log(data);
+    })
+  location.reload();
 });

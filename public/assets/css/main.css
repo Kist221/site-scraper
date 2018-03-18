@@ -1,9 +1,9 @@
-body { 
-  background-color: #F2F6D0 
+body {
+  background: lightgrey;
 }
 
 #wrapper {
-  width: 960px;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 5%;
@@ -16,8 +16,8 @@ body {
   height: 700px;
 }
 
-#notes {
-  float: right;
+#comments {
+  float: left;
   width: 30%;
 }
 
