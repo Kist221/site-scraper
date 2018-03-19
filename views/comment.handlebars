@@ -9,15 +9,15 @@
 		<div id="comments">
 			<h2>Comments</h2>
 			<div id="commentForm">
-				<input id="userInput" name="Title" placeholder="Title">
-				<textarea id="bodyinput" name="Comment" placeholder="Comment"></textarea>
+				<input id="titleInput" name="Title" placeholder="Title">
+				<textarea id="bodyInput" name="Comment" placeholder="Comment"></textarea>
 				<button data-id="{{headline._id}}" id='addComment'>Add Comment</button>
 			</div>
 			<div id="commentsContainer">
 				{{#each headline.comment}}
 					<div class="headline" articleId="{{_id}}">
-						<h2>{{headline.comment.title}}</h2>
-						<p>{{headline.comment.body}}</p>
+						<h3>{{title}}</h3>
+						<p>{{body}}</p>
 					</div>
 				{{/each}}
 			</div>
