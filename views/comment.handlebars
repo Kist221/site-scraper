@@ -1,20 +1,34 @@
-<div id="wrapper">
-	<a href="/">Back</a>
-	<div id="content">
-		<div class="headline" id="{{headline._id}}">
-			<img src="{{headline.image}}">		
-			<h1>{{headline.title}}</h1>
-			<p>{{headline.summary}}</p>
-			<a href="{{headline.link}}" target="_blank" rel="noopener">View Article</a>
-		</div>
-		<div id="comments">
-			<h2>Comments</h2>
-			<div id="commentForm">
-				<input id="titleInput" name="Title" placeholder="Title">
-				<textarea id="bodyInput" name="Comment" placeholder="Comment"></textarea>
-				<button data-id="{{headline._id}}" id='addComment'>Add Comment</button>
+<div class="jumbotron jumbotron-fluid" id="wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<a href="/" class="badge badge-primary">Back</a>
 			</div>
-			<div id="commentsContainer">
+		</div>
+		<hr class="my-3">
+		<div class="row">
+			<div class="col" id="content">
+				<div class="headline" id="{{headline._id}}">
+					<img class="w-100" src="{{headline.image}}">		
+					<h1 class="display-4 text-center">{{headline.title}}</h1>
+					<p class="lead text-justify">{{headline.summary}}</p>
+					<div class="row">
+						<div class="col text-right">
+						<a href="{{headline.link}}" class="badge badge-secondary" target="_blank" rel="noopener">Read Full Article</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr class="my-3">
+		<div class="row" id="comments">
+			<div class="col-sm-6" id="commentForm">
+				<h2>Comments</h2>
+				<input class="form-control my-1" type="text" id="titleInput" name="Title" placeholder="Title">
+				<textarea class="form-control my-1" type="text" id="bodyInput" name="Comment" placeholder="Comment"></textarea>
+				<button class="btn btn-primary btn-sm my-1" data-id="{{headline._id}}" id='addComment'>Add Comment</button>
+			</div>
+			<div class="col-sm-6" id="commentsContainer">
 				{{#each headline.comment}}
 					<div class="headline" articleId="{{_id}}">
 						<h3>{{title}}</h3>
