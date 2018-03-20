@@ -7,8 +7,13 @@
 			{{#each headline}}
 				<div class="headline" articleId="{{_id}}">
 					<img class="w-100" src="{{image}}">
-					<h2 class="text-center">{{title}}</h2>
-					<p class="lead text-justify">{{summary}}</p>
+					<h2 class="text-center my-2">{{title}}</h2>
+					<p class="lead text-justify m-0">{{summary}}</p>
+					<div class="row">
+						<div class="col text-right">
+							<p class="badge badge-pill badge-secondary m-0">Click for More</p>
+						</div>
+					</div>
 				</div>
 				<hr class="my-4">
 			{{/each}}
