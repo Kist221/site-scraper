@@ -1,14 +1,18 @@
-<div id="wrapper">
-	<h1>Articles</h1>
-	<button id="scrapeBtn">Check CS Blog</button>
-	<div id="headlines">
-		{{#each headline}}
-			<div class="headline" articleId="{{_id}}">
-				<img src="{{image}}">
-				<h2>{{title}}</h2>
-				<p>{{summary}}</p>
-			</div>
-		{{/each}}
+<div class="jumbotron jumbotron-fluid" id="wrapper">
+	<div class="container">
+		<h1 class="display-4">Awesome Articles</h1>
+		<button class="btn btn-primary btn-lg" id="scrapeBtn" role="button">Check CS Blog</button>
+		<hr class="my-4">
+		<div class="align-middle" id="headlines">
+			{{#each headline}}
+				<div class="headline" articleId="{{_id}}">
+					<img class="w-100" src="{{image}}">
+					<h2 class="text-center">{{title}}</h2>
+					<p class="lead text-justify">{{summary}}</p>
+				</div>
+				<hr class="my-4">
+			{{/each}}
+		</div>
+		<button class="btn btn-danger btn-sm" id="clearBtn" role="button">DELETE ALL</button>
 	</div>
-	<button id="clearBtn">CLEAR ALL</button>
 </div>
