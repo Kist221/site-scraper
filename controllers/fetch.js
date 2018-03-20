@@ -48,10 +48,12 @@ router.get("/api/scrape", function(req, res) {
       result.summary = $(this)
       	.children("p")
       	.text();
-      result.link = "https://www.csdesignstudios.com" + $(this)
+      result.link = "https://www.csdesignstudios.com/" + $(this)
         .children("a")
         .attr("href");
-
+      result.image = "https://www.csdesignstudios.com/" + $(this)
+        .children("img")
+        .attr("src");
       // Create a new Headline using the `result` object built from scraping
       db.Headline.create(result)
         .then(function(dbHeadline) {

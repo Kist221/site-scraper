@@ -22,6 +22,10 @@ const HeadlineSchema = new Schema({
     type: String,
     required: true
   },
+  // image src
+  image: {
+    type: String,
+  },
   // `comment` is an object that stores a Comment id
   // The ref property links the ObjectId to the Comment model
   // This allows us to populate the Headline with an associated Comment
